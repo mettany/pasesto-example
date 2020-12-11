@@ -25,6 +25,10 @@ public class Paseto {
     private final String privateKey = "4f67efbf5bac0ac01c30f359e603c79d45b2b81d503c1c8b0fada469a3b9d50e2d9f331a7ebb8a870dc642a2351bad47ff82b88f096aff3e85ef543fed9cf7b8";
     private final String publicKey = "2d9f331a7ebb8a870dc642a2351bad47ff82b88f096aff3e85ef543fed9cf7b8";
 
+    /**
+     * This method is returning the generated PASETO token
+     * @return a public v2 PASETO token
+     */
     public String signToken() {
         PrivateKey privateKey = getPrivateKey();
         return Pasetos.V2.PUBLIC.builder()
@@ -39,10 +43,21 @@ public class Paseto {
                 .compact();
     }
 
+    /**
+     * Get a GsonSerializer used by JPaseto for serialize the data in the token
+     * We need to register TypeAdapter for handling the date format serializing
+     * @return GsonSerializer
+     */
     private GsonSerializer<Map<String, Object>> getSerializer() {
         return new GsonSerializer<>(new GsonBuilder().registerTypeAdapter(Instant.class, new InstantTypeConverter()).create());
     }
 
+    /**
+     * Generate a java.security.PrivateKey from a hex encoded private
+     * key. You should store it in a secure location. For the example
+     * the keys are directly hardcoded in the code
+     * @return java.security.PrivateKey
+     */
     private PrivateKey getPrivateKey() {
         Security.addProvider(new BouncyCastleProvider());
         byte[] pvKey = FormatUtils.decodeHex(privateKey);
