@@ -41,7 +41,6 @@ public class Paseto {
         } catch (PasetoException e) {
             return false;
         }
-
     }
 
     /**

@@ -4,4 +4,4 @@ This project contain java example of how to generate and verify a public v2 PASE
 Ed25519 keypair encoded in hex string.
 
 This repository is illustrating the followin blog article: 
-https://blog.mettan.dev/java-generating-public-paseto-from-hex-ed25519-key-pair
+https://mettan.dev/java-generating-public-paseto-from-hex-ed25519-key-pair
